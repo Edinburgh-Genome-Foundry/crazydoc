@@ -1,7 +1,7 @@
 .. raw:: html
 
     <p align="center">
-    <img alt="crazydoc Logo" title="crazydoc Logo" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/_static/images/title.png" width="800">
+    <img alt="crazydoc Logo" title="crazydoc Logo" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/title.png" width="700">
     <br /><br />
     </p>
 
@@ -18,7 +18,7 @@ Crazydoc is a Python library to read a popular DNA sequence representation forma
 .. raw:: html
 
     <p align="center">
-    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/screenshot.png" width="825">
+    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/screenshot.png" width="600">
     </p>
 
 While other DNA representation such as FASTA, Genbank, or SBOL are better supported by modern sequence editors, none seems to have reached the ubiquitousness that MS-Word enjoys among molecular biologists.
@@ -51,7 +51,7 @@ You can then plot the obtained records:
 .. raw:: html
 
     <p align="center">
-    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/records_plot.png" width="825">
+    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/records_plots.png" width="800">
     </p>
 
 To write the sequences down as Genbank records, with annotations:
