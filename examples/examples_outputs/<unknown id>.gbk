@@ -1,0 +1,46 @@
+LOCUS       .                        932 bp    DNA              UNK 01-JAN-1980
+DEFINITION  ..
+ACCESSION   <unknown id>
+VERSION     <unknown id>
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    17..214
+                     /highlight_color="#d1d0ce"
+                     /color="#d1d0ce"
+                     /ApEinfo_revcolor="#d1d0ce"
+                     /ApEinfo_fwdcolor="#d1d0ce"
+     misc_feature    471..832
+                     /highlight_color="#94d3ca"
+                     /color="#94d3ca"
+                     /ApEinfo_revcolor="#94d3ca"
+                     /ApEinfo_fwdcolor="#94d3ca"
+     misc_feature    629..657
+                     /bold=True
+                     /label="bold"
+     misc_feature    1..7
+                     /underline=True
+                     /label="underline"
+     misc_feature    926..932
+                     /underline=True
+                     /label="underline"
+ORIGIN
+        1 acgtatgtgc gtgtgtgcgt gtgtgcgtga tgtatttatt gtgcgtgtga aacacaccgc
+       61 aacacgtatg tgcgtgtgtg cgtgtgtgcg tgatgtattt attgtgcgtg tgaaacacac
+      121 cgcaacacgt atgtgcgtgt gtgcgtgtgt gcgtgatgta tttattgtgc gtgtgaaaca
+      181 caccgcaaca cgtatgtgcg tgtgtgcgtg tgtgcgtgat gtatttattg tgcgtgtgaa
+      241 acacaccgca acacgtatgt gcgtgtgtgc gtgtgtgcgt gatgtattta ttgtgcgtgt
+      301 gaaacacacc gcaacacgta tgtgcgtgtg tgcgtgtgtg cgtgatgtat ttattgtgcg
+      361 tgtgaaacac accgcaacac gtatgtgcgt gtgtgcgtgt gtgcgtgatg tatttattgt
+      421 gcgtgtgaaa cacaccgcaa cacgtatgtg cgtgtgtgcg tgtgtgacgt atgtgcgtgt
+      481 gtgcgtgtgt gcgtgatgta tttattgtgc gtgtgaaaca caccgcaaca cgtatgtgcg
+      541 tgtgtgcgtg tgtgcgtgat gtatttattg tgcgtgtgaa acacaccgca acacgtatgt
+      601 gcgtgtgtgc gtgtgtgcgt gatgtattta ttgtgcgtgt gaaacacacc gcaacacgta
+      661 tgtgcgtgtg tgcgtgtgtg cgtgatgtat ttattgtgcg tgtgaaacac accgcaacac
+      721 gtatgtgcgt gtgtgcgtgt gtgcgtgatg tatttattgt gcgtgtgaaa cacaccgcaa
+      781 cacgtatgtg cgtgtgtgcg tgtgtgcgtg atgtatttat tgtgcgtgtg aaacacaccg
+      841 caacacgtat gtgcgtgtgt gcgtgtgtgc gtgatgtatt tattgtgcgt gtgaaacaca
+      901 ccgcaacacg tatgtgcgtg tgtgcgtgtg tg
+//

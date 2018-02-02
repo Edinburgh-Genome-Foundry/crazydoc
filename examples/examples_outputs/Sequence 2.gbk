@@ -1,0 +1,35 @@
+LOCUS       Sequence_2               667 bp    DNA              UNK 01-JAN-1980
+DEFINITION  ..
+ACCESSION   Sequence 2
+VERSION     Sequence 2
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     misc_feature    102..151
+                     /highlight_color="#94d3ca"
+                     /color="#94d3ca"
+                     /ApEinfo_revcolor="#94d3ca"
+                     /ApEinfo_fwdcolor="#94d3ca"
+     misc_feature    365..499
+                     /highlight_color="#f6d023"
+                     /bold=True
+                     /color="#f6d023"
+                     /ApEinfo_revcolor="#f6d023"
+                     /ApEinfo_fwdcolor="#f6d023"
+                     /label="bold"
+ORIGIN
+        1 acacaccgca acacgtatgt gcgtgtgtgc gtgtgtgcgt gatgtattta ttgtgcgtgt
+       61 gaaacacacc gcaacacgta tgtgcgtgtg tgcgtgtgtg cgtgatgtat ttattgtgcg
+      121 tgtgaaacac accgcaacac gtatgtgcgt gtgtgcgtgt gtgcgtgatg tatttattgt
+      181 gcgtgtgaaa cacaccgcaa cacgtatgtg cgtgtgtgcg tgtgtgcgtg atgtatttat
+      241 tgtgcgtgtg aaacacaccg caacacgtat gtgcgtgtgt gcgtgtgtgc gtgatgtatt
+      301 tattgtgcgt gtgaaacaca ccgcaacacg tatgtgcgtg tgtgcgtgtg tgcgtgatgt
+      361 atttattgtg cgtgtgaaac acaccgcaac acgtatgtgc gtgtgtgcgt gtgtgcgtga
+      421 tgtatttatt gtgcgtgtga aacacaccgc aacacgtatg tgcgtgtgtg cgtgtgtgcg
+      481 tgatgtattt attgtgcgtg tgaaacacac cgcaacacgt atgtgcgtgt gtgcgtgtgt
+      541 gcgtgatgta tttattgtgc gtgtgaaaca caccgcaaca cgtatgtgcg tgtgtgcgtg
+      601 tgtgcgtgat gtatttattg tgcgtgtgaa acacaccgca acacgtatgt gcgtgtgtgc
+      661 gtgtgtg
+//
