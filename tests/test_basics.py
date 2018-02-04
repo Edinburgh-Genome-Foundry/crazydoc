@@ -1,5 +1,7 @@
-from crazydoc import CrazydocParser, CrazydocSketcher, records_to_genbank
 import os
+from crazydoc import CrazydocParser, CrazydocSketcher, records_to_genbank
+import matplotlib
+matplotlib.use("Agg")
 
 example_path = os.path.join('tests', 'data', "test_sample.docx")
 
