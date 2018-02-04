@@ -14,4 +14,4 @@ setup(
     license='see LICENSE.txt',
     keywords="dna-sequence bioinformatics systems-biology docx",
     packages=find_packages(exclude='docs'),
-    install_requires=['Biopython', 'docx'])
+    install_requires=['Biopython', 'python-docx'])
