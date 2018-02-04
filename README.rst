@@ -28,7 +28,7 @@ Relying on a loose syntax and unclear specifications, this format has however su
 Usage
 -----
 
-To obtain all sequences contained in a docx as annotated Biopython records:
+To obtain all sequences contained in a docx as annotated Biopython records (such as `this one <https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/examples/example.docx>`_):
 
 .. code:: python
 
