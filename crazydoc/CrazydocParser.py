@@ -6,6 +6,22 @@ from .biotools import string_is_sequence
 
 
 class CrazydocParser:
+    """Parser to translate MS-docx documents to Biopython records.
+
+    Examples:
+    ---------
+
+    >>> parser = CrazydocParser(['highlight_color', 'font_color'])
+    >>> biopython_records = parser.parse_doc_file('example.docx')
+
+    Parameters
+    ----------
+
+    observers
+      A list of either ``crazydoc.Observer`` objects or observer names in
+      ``highlight_color``, ``font_color``, ``bold``, ``italic``,
+      ``upper_case``, ``lower_case``, ``underline``.
+    """
     observers_dict = {
         _class.name: _class()
         for _class in (HighlightColor, FontColor, Bold, Italic, UpperCase,
@@ -20,6 +36,7 @@ class CrazydocParser:
 
 
     def _extract_sequence_names_and_runs(self, doc):
+        """Parse the doc, return a list [(sequence_name, sequenceruns), ...]"""
         sequence_name = None
         sequence_paragraphs = []
         reading_sequence = False
@@ -43,6 +60,7 @@ class CrazydocParser:
         ]
 
     def _msword_runs_to_record(self, runs):
+        """Transform a MS Word runs list to a biopython record."""
         records = [
             observer.msword_runs_to_record(runs)
             for observer in self.observers
@@ -66,6 +84,18 @@ class CrazydocParser:
 
 
     def parse_doc_file(self, filepath=None, doc=None):
+        """Return a list of records, 1 for each sequence contained in the docx.
+
+        Parameters
+        ----------
+
+        filepath
+          A path to a docx file
+
+        doc
+          A python-docx Document object, which can be provided instead of the
+          file path.
+        """
         if doc is None:
             doc = Document(filepath)
         records = []
