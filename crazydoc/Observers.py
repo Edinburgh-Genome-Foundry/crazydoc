@@ -23,7 +23,7 @@ class StyleObserver:
         if 'label' in feature.qualifiers:
             label = feature.qualifiers['label'] + '; '
         label += self.name
-        if not isinstance(value, bool): 
+        if not isinstance(value, bool):
             label += ": " + str(value)
         feature.qualifiers['label'] = label
 
@@ -31,21 +31,21 @@ class StyleObserver:
         features = [[None, '']]
         for run in runs:
             value = self.evaluate(run)
-
+            text = run.text.replace(' ', '')
             if value == features[-1][0]:
-                features[-1][1] += run.text
+                features[-1][1] += text
             else:
-                features.append([value, run.text])
+                features.append([value, text])
         return features
 
     def msword_runs_to_record(self, runs):
         feature_records = [
             (
-                sequence_to_annotated_record(text, **{self.name: value_})
-                if value_
+                sequence_to_annotated_record(text, **{self.name: val})
+                if val
                 else sequence_to_record(text)
             )
-            for (value_, text) in self.aggregate_features_from_runs(runs)
+            for (val, text) in self.aggregate_features_from_runs(runs)
         ]
         record = feature_records[0]
         if len(feature_records) > 1:

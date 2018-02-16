@@ -82,3 +82,11 @@ License = MIT
 Crazydoc is an open-source software originally written at the `Edinburgh Genome Foundry <http://genomefoundry.org>`_ by `Zulko <https://github.com/Zulko>`_ and `released on Github <https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_ under the MIT licence (¢ Edinburg Genome Foundry).
 
 Everyone is welcome to contribute !
+
+More biology software
+---------------------
+
+.. image:: https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/Edinburgh-Genome-Foundry.github.io/master/static/imgs/logos/egf-codon-horizontal.png
+  :target: https://edinburgh-genome-foundry.github.io/
+
+Crazydoc is part of the `EGF Codons <https://edinburgh-genome-foundry.github.io/>`_ synthetic biology software suite for DNA design, manufacturing and validation.

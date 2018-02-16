@@ -41,7 +41,8 @@ class CrazydocParser:
         sequence_paragraphs = []
         reading_sequence = False
         for paragraph in doc.paragraphs:
-            if string_is_sequence(paragraph.text):
+            stripped = paragraph.text.replace(" ", "")
+            if string_is_sequence(stripped):
                 if reading_sequence:
                     sequence_paragraphs[-1][1].append(paragraph)
                 else:
