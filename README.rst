@@ -89,7 +89,7 @@ Alternatively, you can unzip the sources in a folder and type
 License = MIT
 --------------
 
-Crazydoc is an open-source software originally written at the `Edinburgh Genome Foundry <http://genomefoundry.org>`_ by `Zulko <https://github.com/Zulko>`_ and `released on Github <https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_ under the MIT licence (¢ Edinburg Genome Foundry).
+Crazydoc is an open-source software originally written at the `Edinburgh Genome Foundry <http://genomefoundry.org>`_ by `Zulko <https://github.com/Zulko>`_ and `released on Github <https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_ under the MIT licence (copyright Edinburg Genome Foundry).
 
 Everyone is welcome to contribute !
 
