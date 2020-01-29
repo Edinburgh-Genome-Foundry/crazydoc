@@ -81,15 +81,18 @@ def records_to_genbank(records, path='.', extension=None, is_protein=False):
         if name in name_duplicates:
             name_duplicates[name] += 1
             name = "%s_%03d" % (name, name_duplicates[name])
-        record = deepcopy(record)
-        record.name = record.name[:20]
-        SeqIO.write(record, os.path.join(path, name + extension), 'genbank')
+        out_record = deepcopy(record)
+        out_record.name = record.name[:20]
+        SeqIO.write(out_record, os.path.join(path, name+extension), 'genbank')
 
 def records_to_fasta(records, filename):
     name_duplicates = {}
+    out_records = []
     for record in records:
         name = record.id
+        out_record = deepcopy(record)
         if name in name_duplicates:
             name_duplicates[name] += 1
-            record.id = "%s_%03d" % (name, name_duplicates[name])
-    SeqIO.write(records, filename, 'fasta')
+            out_record.id = "%s_%03d" % (name, name_duplicates[name])
+        out_records.append(out_record)
+    SeqIO.write(out_records, filename, 'fasta')
