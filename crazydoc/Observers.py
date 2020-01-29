@@ -4,7 +4,7 @@ from .biotools import sequence_to_record, sequence_to_annotated_record
 class StyleObserver:
     """Generic class for observing style-based annotations in sequences.
 
-    The subclasses observe each one particular type of DNA sequence annotation
+    The subclasses observe each one particular type of sequence annotation
     such as the highlight color, bold text, underlines, etc.
 
     """
@@ -38,12 +38,13 @@ class StyleObserver:
                 features.append([value, text])
         return features
 
-    def msword_runs_to_record(self, runs):
+    def msword_runs_to_record(self, runs, is_protein=False):
         feature_records = [
             (
-                sequence_to_annotated_record(text, **{self.name: val})
+                sequence_to_annotated_record(text, is_protein=is_protein,
+                                             **{self.name: val})
                 if val
-                else sequence_to_record(text)
+                else sequence_to_record(text, is_protein=is_protein)
             )
             for (val, text) in self.aggregate_features_from_runs(runs)
         ]
