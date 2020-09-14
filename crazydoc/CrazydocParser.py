@@ -1,7 +1,14 @@
 from docx import Document
 
-from .Observers import (HighlightColor, FontColor, Bold, Italic, UpperCase,
-                        LowerCase, Underline)
+from .Observers import (
+    HighlightColor,
+    FontColor,
+    Bold,
+    Italic,
+    UpperCase,
+    LowerCase,
+    Underline,
+)
 from .biotools import string_is_sequence
 
 
@@ -22,18 +29,24 @@ class CrazydocParser:
       ``highlight_color``, ``font_color``, ``bold``, ``italic``,
       ``upper_case``, ``lower_case``, ``underline``.
     """
+
     observers_dict = {
         _class.name: _class()
-        for _class in (HighlightColor, FontColor, Bold, Italic, UpperCase,
-                       LowerCase, Underline)
+        for _class in (
+            HighlightColor,
+            FontColor,
+            Bold,
+            Italic,
+            UpperCase,
+            LowerCase,
+            Underline,
+        )
     }
 
     def __init__(self, observers):
         self.observers = [
-            self.observers_dict[o] if isinstance(o, str) else o
-            for o in observers
+            self.observers_dict[o] if isinstance(o, str) else o for o in observers
         ]
-
 
     def _extract_sequence_names_and_runs(self, doc):
         """Parse the doc, return a list [(sequence_name, sequenceruns), ...]"""
@@ -52,7 +65,7 @@ class CrazydocParser:
                 if reading_sequence:
                     sequence_name = None
                     reading_sequence = False
-                if paragraph.text.startswith('>'):
+                if paragraph.text.startswith(">"):
                     sequence_name = paragraph.text[1:].strip()
         sequence_paragraphs
         return [
@@ -62,10 +75,7 @@ class CrazydocParser:
 
     def _msword_runs_to_record(self, runs):
         """Transform a MS Word runs list to a biopython record."""
-        records = [
-            observer.msword_runs_to_record(runs)
-            for observer in self.observers
-        ]
+        records = [observer.msword_runs_to_record(runs) for observer in self.observers]
         final_record = records[0]
         record_features = {
             (feature.location.start, feature.location.end): feature
@@ -81,8 +91,6 @@ class CrazydocParser:
                     final_record.features.append(feature)
                     record_features[location] = feature
         return final_record
-
-
 
     def parse_doc_file(self, filepath=None, doc=None):
         """Return a list of records, 1 for each sequence contained in the docx.
@@ -104,7 +112,7 @@ class CrazydocParser:
             record = self._msword_runs_to_record(runs)
             if name is not None:
                 record.id = name
-                record.name = name.replace(' ', '_')
+                record.name = name.replace(" ", "_")
             for observer in self.observers:
                 observer.process_record_features(record)
             records.append(record)
