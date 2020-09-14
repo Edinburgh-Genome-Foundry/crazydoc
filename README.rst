@@ -71,27 +71,37 @@ To write the sequences down as Genbank records, with annotations:
     from crazydoc import records_to_genbank
     records_to_genbank(biopython_records)
 
-Installation
--------------
+To read protein sequences, pass `is_protein=True`:
 
-(soon) You can install crazydoc through PIP
+.. code:: python
+
+    biopython_records = parse_doc_file(protein_path, is_protein=True)
+
+This will return protein records, which will be saved with a GenPept extension (.gp) by 
+`records_to_genbank()`, unless specified otherwise.
+
+
+Installation
+------------
+
+You can install crazydoc through PIP:
 
 .. code::
 
     sudo pip install crazydoc
 
-Alternatively, you can unzip the sources in a folder and type
+Alternatively, you can unzip the sources in a folder and type:
 
 .. code::
 
     sudo python setup.py install
 
 License = MIT
---------------
+-------------
 
-Crazydoc is an open-source software originally written at the `Edinburgh Genome Foundry <http://genomefoundry.org>`_ by `Zulko <https://github.com/Zulko>`_ and `released on Github <https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_ under the MIT licence (copyright Edinburg Genome Foundry).
+Crazydoc is an open-source software originally written at the `Edinburgh Genome Foundry <http://genomefoundry.org>`_ by `Zulko <https://github.com/Zulko>`_ and `released on Github <https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_ under the MIT licence (Copyright 2018 Edinburgh Genome Foundry).
 
-Everyone is welcome to contribute !
+Everyone is welcome to contribute!
 
 More biology software
 ---------------------
