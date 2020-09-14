@@ -71,14 +71,17 @@ To write the sequences down as Genbank records, with annotations:
     from crazydoc import records_to_genbank
     records_to_genbank(biopython_records)
 
-To read protein sequences, pass `is_protein=True`:
+Note that `records_to_genbank()` will truncate the record name to 20 characters, 
+to fit in the GenBank format. Additionally, slashes (`/`) will be replaced with 
+hyphens (`-`) in the filenames. To read protein sequences, pass `is_protein=True`:
 
 .. code:: python
 
     biopython_records = parse_doc_file(protein_path, is_protein=True)
 
-This will return protein records, which will be saved with a GenPept extension (.gp) by 
-`records_to_genbank()`, unless specified otherwise.
+This will return *protein* records, which will be saved with a GenPept extension 
+(.gp) by `records_to_genbank(biopython_records, is_protein=True)`, 
+unless specified otherwise with `extension=`.
 
 
 Installation
