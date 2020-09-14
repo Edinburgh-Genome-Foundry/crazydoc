@@ -48,14 +48,14 @@ class CrazydocParser:
             self.observers_dict[o] if isinstance(o, str) else o for o in observers
         ]
 
-    def _extract_sequence_names_and_runs(self, doc):
+    def _extract_sequence_names_and_runs(self, doc, is_protein=False):
         """Parse the doc, return a list [(sequence_name, sequenceruns), ...]"""
         sequence_name = None
         sequence_paragraphs = []
         reading_sequence = False
         for paragraph in doc.paragraphs:
             stripped = paragraph.text.replace(" ", "")
-            if string_is_sequence(stripped):
+            if string_is_sequence(stripped, is_protein=is_protein):
                 if reading_sequence:
                     sequence_paragraphs[-1][1].append(paragraph)
                 else:
@@ -67,15 +67,17 @@ class CrazydocParser:
                     reading_sequence = False
                 if paragraph.text.startswith(">"):
                     sequence_name = paragraph.text[1:].strip()
-        sequence_paragraphs
         return [
             (name, [run for par in paragraphs for run in par.runs])
             for name, paragraphs in sequence_paragraphs
         ]
 
-    def _msword_runs_to_record(self, runs):
-        """Transform a MS Word runs list to a Biopython record."""
-        records = [observer.msword_runs_to_record(runs) for observer in self.observers]
+    def _msword_runs_to_record(self, runs, is_protein=False):
+        """Transform a MS Word runs list to a biopython record."""
+        records = [
+            observer.msword_runs_to_record(runs, is_protein=is_protein)
+            for observer in self.observers
+        ]
         final_record = records[0]
         record_features = {
             (feature.location.start, feature.location.end): feature
@@ -92,7 +94,7 @@ class CrazydocParser:
                     record_features[location] = feature
         return final_record
 
-    def parse_doc_file(self, filepath=None, doc=None):
+    def parse_doc_file(self, filepath=None, doc=None, is_protein=False):
         """Return a list of records, 1 for each sequence contained in the docx.
 
         Parameters
@@ -104,12 +106,17 @@ class CrazydocParser:
         doc
           A python-docx Document object, which can be provided instead of the
           file path.
+
+        is_protein
+          True if the sequences are protein sequences (default: False).
         """
         if doc is None:
             doc = Document(filepath)
         records = []
-        for name, runs in self._extract_sequence_names_and_runs(doc):
-            record = self._msword_runs_to_record(runs)
+        for name, runs in self._extract_sequence_names_and_runs(
+            doc, is_protein=is_protein
+        ):
+            record = self._msword_runs_to_record(runs, is_protein=is_protein)
             if name is not None:
                 record.id = name
                 record.name = name.replace(" ", "_")
