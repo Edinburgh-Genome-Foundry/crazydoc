@@ -5,9 +5,8 @@ from .biotools import sequence_to_record, sequence_to_annotated_record
 class StyleObserver:
     """Generic class for observing style-based annotations in sequences.
 
-    The subclasses observe each one particular type of DNA sequence annotation
-    such as the highlight color, bold text, underlines, etc.
-
+    The provided subclasses each observe one particular type of DNA sequence
+    annotation, such as the highlight color, bold text, underlines, etc.
     """
 
     def __init__(self):

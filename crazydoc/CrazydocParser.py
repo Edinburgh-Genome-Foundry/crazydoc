@@ -74,7 +74,7 @@ class CrazydocParser:
         ]
 
     def _msword_runs_to_record(self, runs):
-        """Transform a MS Word runs list to a biopython record."""
+        """Transform a MS Word runs list to a Biopython record."""
         records = [observer.msword_runs_to_record(runs) for observer in self.observers]
         final_record = records[0]
         record_features = {
@@ -99,7 +99,7 @@ class CrazydocParser:
         ----------
 
         filepath
-          A path to a docx file
+          A path to a docx file.
 
         doc
           A python-docx Document object, which can be provided instead of the

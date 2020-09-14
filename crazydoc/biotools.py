@@ -24,19 +24,19 @@ def annotate_record(
     ----------
 
     seqrecord
-      The biopython seqrecord to be annotated.
+      The Biopython SeqRecord to be annotated.
 
     location
-      Either (start, end) or (start, end, strand). (strand defaults to +1)
+      Either (start, end) or (start, end, strand). (strand defaults to +1).
 
     feature_type
-      The type associated with the feature
+      The type associated with the feature.
 
     margin
       Number of extra bases added on each side of the given location.
 
     qualifiers
-      Dictionnary that will be the Biopython feature's `qualifiers` attribute.
+      Dictionary that will be the Biopython feature's `qualifiers` attribute.
     """
     if location == "full":
         location = (margin, len(seqrecord) - margin)
