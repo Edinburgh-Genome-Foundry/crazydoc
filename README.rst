@@ -5,9 +5,10 @@
     <br /><br />
     </p>
 
-.. image:: https://travis-ci.org/Edinburgh-Genome-Foundry/crazydoc.svg?branch=master
-   :target: https://travis-ci.org/Edinburgh-Genome-Foundry/crazydoc
-   :alt: Travis CI build status
+
+.. image:: https://github.com/Edinburgh-Genome-Foundry/crazydoc/actions/workflows/build.yml/badge.svg
+   :target: https://github.com/Edinburgh-Genome-Foundry/crazydoc/actions/workflows/build.yml
+   :alt: GitHub CI build status
 
 .. image:: https://coveralls.io/repos/github/Edinburgh-Genome-Foundry/crazydoc/badge.svg?branch=master
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/crazydoc?branch=master
@@ -91,13 +92,13 @@ You can install crazydoc through PIP:
 
 .. code::
 
-    sudo pip install crazydoc
+    pip install crazydoc
 
 Alternatively, you can unzip the sources in a folder and type:
 
 .. code::
 
-    sudo python setup.py install
+    python setup.py install
 
 License = MIT
 -------------

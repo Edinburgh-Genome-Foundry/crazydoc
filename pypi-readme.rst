@@ -1,5 +1,5 @@
 CrazyDoc
-============
+========
 
 Crazydoc is a Python library to parse one of the most common DNA representation formats: the joyfully coloured and stylishly annotated MS-Word document.
 
