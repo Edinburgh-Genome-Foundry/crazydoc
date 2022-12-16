@@ -11,6 +11,8 @@ from docx.shared import Pt, RGBColor
 from docx.enum.base import EnumValue
 from docx.enum.text import WD_COLOR
 
+import logging
+
 def _make_bold(run,formatting):
     run.font.bold = True
 def _make_italic(run,formatting):
@@ -87,6 +89,11 @@ def _get_feature_names(position_features):
             unique_fnames.append(f)
     return unique_fnames
 
+def _check_enough_groups(adjacency):
+    for key in adjacency.keys():
+        if (len(adjacency[key])+1) > len(formats):
+            logging.warning(f"{key} overlaps more features than there are formatting groups.")
+
 def _get_connections(position_features):
     """Identify which features occur at the same position.
     Overlapping features must be in different groups.
@@ -111,7 +118,13 @@ def _get_connections(position_features):
                 adjacency[fname].remove(fname)
         # remove duplicates
         adjacency[fname] = set(adjacency[fname])
+    _check_enough_groups(adjacency)
     return adjacency
+
+def _check_all_features_grouped(position_features, feature_groups):
+    grouped_features = _get_feature_names(feature_groups)
+    ufeatures = _get_feature_names(position_features)
+    assert all(uf in grouped_features for uf in ufeatures), "Not all features given a group"
 
 def make_groups(position_features):
     """Make groups where no overlapping features share a group
@@ -136,7 +149,11 @@ def make_groups(position_features):
             if all(f_connection not in group for f_connection in adjacency[fname]):
                 group.append(fname)
                 break
+    _check_all_features_grouped(position_features, feature_groups)
     return feature_groups
+
+def _check_enough_formats(group, group_formats):
+    assert len(group) <= len(group_formats), f"{group} contains more features than there are available formats"
 
 def _make_feature_formats(feature_groups, formats):
     """Assign formatting to each feature
@@ -151,6 +168,7 @@ def _make_feature_formats(feature_groups, formats):
     """
     feature_formats = {}
     for i,group in enumerate(feature_groups):
+        _check_enough_formats(group, formats[i])
         for j,feature in enumerate(group):
             feature_formats[feature] = formats[i][j]
     return feature_formats
@@ -231,3 +249,5 @@ highlight_colours = [WD_COLOR.BLUE, WD_COLOR.BRIGHT_GREEN ,WD_COLOR.DARK_BLUE ,W
 # Change font colour options so that they are all distinguishable on all highlight colours
 font_colours = [RGBColor(0xF8, 0x76, 0x6D), RGBColor(0xB7, 0x9F, 0x00), RGBColor(0x00, 0xBA, 0x38), RGBColor(0x00, 0xBF, 0xC4), RGBColor(0x61, 0x9C, 0xFF), RGBColor(0xF5, 0x64, 0xE3)]
 formats = [highlight_colours, font_colours, ['bold'], ['underline'], ['italic']]
+# Sorted so that formats and groups run largest to smallest
+formats.sort(key=len, reverse=True)
