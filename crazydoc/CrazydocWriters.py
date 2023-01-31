@@ -154,7 +154,7 @@ def _get_connections(position_features):
 def _check_all_features_grouped(position_features, feature_groups):
     grouped_features = _get_feature_names(feature_groups)
     ufeatures = _get_feature_names(position_features)
-    assert all(uf in grouped_features for uf in ufeatures), "Not all features given a group"
+    assert all(uf in grouped_features for uf in ufeatures), "Not all features given a group, likely because of complex overlapping features."
 
 def make_groups(position_features):
     """Make groups where no overlapping features share a group
