@@ -13,6 +13,35 @@ from docx.enum.text import WD_COLOR
 
 import logging
 
+highlight_colours = [
+    # WD_COLOR.BLUE,
+    # WD_COLOR.BRIGHT_GREEN,
+    WD_COLOR.DARK_BLUE,
+    WD_COLOR.DARK_RED,
+    WD_COLOR.DARK_YELLOW,
+    WD_COLOR.GRAY_25,
+    WD_COLOR.GREEN,
+    # WD_COLOR.PINK,
+    WD_COLOR.RED,
+    WD_COLOR.TEAL,
+    # WD_COLOR.TURQUOISE,
+    WD_COLOR.VIOLET,
+    # WD_COLOR.YELLOW,
+    WD_COLOR.GRAY_50
+    ]
+# Change font colour options so that they are all distinguishable on all highlight colours
+font_colours = [
+    RGBColor(0xF8, 0x76, 0x6D),
+    RGBColor(0xB7, 0x9F, 0x00),
+    RGBColor(0x00, 0xBA, 0x38),
+    RGBColor(0x00, 0xBF, 0xC4),
+    RGBColor(0x61, 0x9C, 0xFF),
+    RGBColor(0xF5, 0x64, 0xE3)
+    ]
+formats = [highlight_colours, font_colours, ['bold'], ['underline'], ['italic']]
+# Sorted so that formats and groups run largest to smallest
+formats.sort(key=len, reverse=True)
+
 def _make_bold(run,formatting):
     run.font.bold = True
 def _make_italic(run,formatting):
@@ -48,7 +77,7 @@ def _apply_format(run, formatting):
     Args:
         run (docx run): The run to be formatted
         formatting (str, RGBColor, EnumValue): The formatting to be applied
-            `get_romatter()` determines how to apply the formatting based
+            `_get_formatter()` determines how to apply the formatting based
             on its type.
     """
     formatter = _get_formatter(formatting)
@@ -89,7 +118,7 @@ def _get_feature_names(position_features):
             unique_fnames.append(f)
     return unique_fnames
 
-def _check_enough_groups(adjacency):
+def _check_enough_groups(adjacency, formats=formats):
     for key in adjacency.keys():
         if (len(adjacency[key])+1) > len(formats):
             logging.warning(f"{key} overlaps more features than there are formatting groups.")
@@ -100,6 +129,7 @@ def _get_connections(position_features):
 
     Args:
         position_features (_type_): _description_
+        formats (list, optional): List of format groups to use on features.
 
     Returns:
         dict: each key is a feature and the items are the features
@@ -208,7 +238,7 @@ def _write_legend(feature_formats, doc):
         run = p.add_run(f"\n{feature}")
         _apply_format(run, feature_formats[feature])
 
-def write_crazyseq(seqrec, qualifier, doc):
+def write_crazyseq(seqrec, qualifier, doc, formats=formats):
     """Write a single sequence with annotated features to an existing
     document element. If you want to crazydocs to handle document
     creation use `write_crazydoc()` even for single sequences.
@@ -217,6 +247,7 @@ def write_crazyseq(seqrec, qualifier, doc):
         seqrec (SeqRecord): The sequence to write, with features
         qualifier (str): The key of the .qualifier to use as feature names
         doc (docx document): The docx document element to write to.
+        formats (list, optional): List of format groups to use on features.
     """
     _write_heading(seqrec, doc)
     # Determine feature groups and formats
@@ -245,9 +276,26 @@ def write_crazydoc(seqs, qualifier, path):
         write_crazyseq(record, qualifier, doc)
     doc.save(path)
 
-highlight_colours = [WD_COLOR.BLUE, WD_COLOR.BRIGHT_GREEN ,WD_COLOR.DARK_BLUE ,WD_COLOR.DARK_RED ,WD_COLOR.DARK_YELLOW ,WD_COLOR.GRAY_25 ,WD_COLOR.GRAY_50 ,WD_COLOR.GREEN ,WD_COLOR.PINK ,WD_COLOR.RED ,WD_COLOR.TEAL ,WD_COLOR.TURQUOISE ,WD_COLOR.VIOLET ,WD_COLOR.YELLOW]
-# Change font colour options so that they are all distinguishable on all highlight colours
-font_colours = [RGBColor(0xF8, 0x76, 0x6D), RGBColor(0xB7, 0x9F, 0x00), RGBColor(0x00, 0xBA, 0x38), RGBColor(0x00, 0xBF, 0xC4), RGBColor(0x61, 0x9C, 0xFF), RGBColor(0xF5, 0x64, 0xE3)]
-formats = [highlight_colours, font_colours, ['bold'], ['underline'], ['italic']]
-# Sorted so that formats and groups run largest to smallest
-formats.sort(key=len, reverse=True)
+def _test_colours(path, highlight_colours=highlight_colours, font_colours=font_colours):
+    """Test all colour combinations
+
+    Args:
+        path (str): Path to save colour test docx
+        highlight_colours (list of WC_COLOR_INDEX, optional): List of used highlight colours in docx WD_COLOR_INDEX form. Defaults to highlight_colours.
+        font_colours (list of RGBColours, optional): List of used font colours in docx RGBColor form. Defaults to font_colours.
+    """
+    doc = Document()
+    p = doc.add_paragraph()
+    run = p.add_run(f"\nlorem ipsum")
+    for font_col in font_colours:
+        run = p.add_run(f"\nlorem ipsum")
+        _apply_format(run, font_col)
+    for highlight_col in highlight_colours:
+        p = doc.add_paragraph()
+        run = p.add_run(f"\nlorem ipsum")
+        _apply_format(run, highlight_col)
+        for font_col in font_colours:
+            run = p.add_run(f"\nlorem ipsum")
+            _apply_format(run, highlight_col)
+            _apply_format(run, font_col)
+    doc.save(path)
