@@ -16,7 +16,6 @@ import logging
 highlight_colours = [
     # WD_COLOR.BLUE,
     # WD_COLOR.BRIGHT_GREEN,
-    WD_COLOR.DARK_BLUE,
     WD_COLOR.DARK_RED,
     WD_COLOR.DARK_YELLOW,
     WD_COLOR.GRAY_25,
@@ -27,7 +26,8 @@ highlight_colours = [
     # WD_COLOR.TURQUOISE,
     WD_COLOR.VIOLET,
     # WD_COLOR.YELLOW,
-    WD_COLOR.GRAY_50
+    WD_COLOR.GRAY_50,
+    WD_COLOR.DARK_BLUE,
     ]
 # Change font colour options so that they are all distinguishable on all highlight colours
 font_colours = [
