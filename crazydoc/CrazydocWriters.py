@@ -204,7 +204,8 @@ def _make_feature_formats(feature_groups, formats):
     return feature_formats
 
 def _write_position_features(position_features, seqrec, feature_formats, p):
-    """Write a sequence formatted according to its features
+    """Write a sequence formatted according to its features. Note that
+    all sequences are written as upper case.
 
     Args:
         position_features (list of lists): Each sublist represents a
@@ -215,7 +216,7 @@ def _write_position_features(position_features, seqrec, feature_formats, p):
         p (docx paragraph): The docx paragraph element to write to
     """
     for i, pfs in enumerate(position_features):
-        run = p.add_run(seqrec[i])
+        run = p.add_run(seqrec[i].upper())
         run.font.size = Pt(8)
         for pf in pfs:
             _apply_format(run, feature_formats[pf])
@@ -259,7 +260,7 @@ def write_crazyseq(seqrec, qualifier, doc, formats=formats):
     _write_position_features(position_features, seqrec, feature_formats, p)
     _write_legend(feature_formats, doc)
     
-def write_crazydoc(seqs, qualifier, path):
+def write_crazydoc(seqs, qualifier, path, formats=formats):
     """Write one or more SeqRecords annotated with features to a new
     document.
     WILL OVERWRITE EXISTING DOUCMENTS WITHOUT WARNING.
@@ -268,12 +269,29 @@ def write_crazydoc(seqs, qualifier, path):
         seqs (list): List of SeqRecords to write out
         qualifier (str): The key to use for feature names from `.qualifiers`
         path (str): The path to write the document to. Will overwrite existing documents!
+        formats (list, optional): List of format groups to use on features.
+    
+    Examples:
+        A custom list of docx formats can be supplied to the `formats` argument.
+        If `formats` is not declared a default pallete is used.
+
+        >>>from docx.shared import RGBColor
+        >>>from docx.enum.text import WD_COLOR
+        >>>custom_formats = [
+                [WD_COLOR.PINK, WD_COLOR.TEAL, WD_COLOR.YELLOW, WD_COLOR.GRAY_50, WD_COLOR.VIOLET, WD_COLOR.TURQUOISE],
+                [RGBColor(0xFF, 0x00, 0x00), RGBColor(0x00, 0xFF, 0x00), RGBColor(0x00, 0x00, 0xFF)],
+                ['bold'],
+                ['underline'],
+                ['italic']
+            ]
+        >>>write_crazydoc(seq, 'product', 'custom_colours.docx', formats=custom_formats)
+
     """
     doc = Document()
     if isinstance(seqs, SeqRecord):
         seqs = [seqs]
     for record in seqs:
-        write_crazyseq(record, qualifier, doc)
+        write_crazyseq(record, qualifier, doc, formats)
     doc.save(path)
 
 def _test_colours(path, highlight_colours=highlight_colours, font_colours=font_colours):
