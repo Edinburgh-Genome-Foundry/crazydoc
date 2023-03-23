@@ -85,13 +85,14 @@ This will return *protein* records, which will be saved with a GenPept extension
 unless specified otherwise with ``extension=``.
 
 You can also save annotated sequences as colourful word docs.
-``write_crazy_doc()`` takes a SeqRecord, the qualifier key to use as a feature name,
+``write_crazydoc()`` takes a SeqRecord, the qualifier key to use as a feature name,
 and a path to save the document to.
 
 .. code:: python
 
     # Load an annotated sequence with biopython
     from Bio import SeqIO
+    from crazydoc import write_crazydoc
     seq = SeqIO.read("examples/examples_outputs/Sequence 1.gbk", "genbank")
     # Most features will already have some name qualifier but you can add your own
     for i,f in enumerate(seq.features):
