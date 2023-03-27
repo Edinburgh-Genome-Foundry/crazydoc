@@ -27,33 +27,42 @@ highlight_colours = [
     WD_COLOR.GRAY_50,
     WD_COLOR.DARK_YELLOW,
     WD_COLOR.DARK_RED,
-    WD_COLOR.DARK_BLUE
-    ]
-# Change font colour options so that they are all distinguishable on all highlight colours
+    WD_COLOR.DARK_BLUE,
+]
+# Change font colour options so that they are all distinguishable
+#  on all highlight colours
 font_colours = [
     RGBColor(0xF8, 0x76, 0x6D),
     RGBColor(0xB7, 0x9F, 0x00),
     RGBColor(0x00, 0xBA, 0x38),
     RGBColor(0x00, 0xBF, 0xC4),
     RGBColor(0x61, 0x9C, 0xFF),
-    RGBColor(0xF5, 0x64, 0xE3)
-    ]
-formats = [highlight_colours, font_colours, ['bold'], ['underline'], ['italic']]
+    RGBColor(0xF5, 0x64, 0xE3),
+]
+formats = [highlight_colours, font_colours, ["bold"], ["underline"], ["italic"]]
 # Sorted so that formats and groups run largest to smallest
 formats.sort(key=len, reverse=True)
 
-def _make_bold(run,formatting):
+
+def _make_bold(run, formatting):
     run.font.bold = True
-def _make_italic(run,formatting):
+
+
+def _make_italic(run, formatting):
     run.font.italic = True
-def _make_underline(run,formatting):
+
+
+def _make_underline(run, formatting):
     run.font.underline = True
+
 
 def _colour_font(run, colour):
     run.font.color.rgb = colour
 
+
 def _highlight_font(run, colour):
     run.font.highlight_color = colour
+
 
 def _get_formatter(formatting):
     if isinstance(formatting, RGBColor):
@@ -62,14 +71,15 @@ def _get_formatter(formatting):
         formatter = _highlight_font
     elif isinstance(formatting, str):
         formatters = {
-            'bold': _make_bold,
-            'italic': _make_italic,
-            'underline': _make_underline
+            "bold": _make_bold,
+            "italic": _make_italic,
+            "underline": _make_underline,
         }
         formatter = formatters[formatting]
     else:
         raise ValueError(f"unknown formatting type, {formatting}")
     return formatter
+
 
 def _apply_format(run, formatting):
     """Apply formatting to a specified run
@@ -83,6 +93,7 @@ def _apply_format(run, formatting):
     formatter = _get_formatter(formatting)
     formatter(run, formatting)
 
+
 def _features_per_position(seqrec, qualifier):
     """Identify all features at each position
 
@@ -95,10 +106,11 @@ def _features_per_position(seqrec, qualifier):
         the ith position.
     """
     position_features = []
-    for i,x in enumerate(seqrec.seq):
+    for i, x in enumerate(seqrec.seq):
         pf = [f.qualifiers[qualifier] for f in seqrec.features if i in f]
         position_features.append(pf)
     return position_features
+
 
 def _get_feature_names(position_features):
     """Get names of each feature in order they appear.
@@ -118,10 +130,14 @@ def _get_feature_names(position_features):
             unique_fnames.append(f)
     return unique_fnames
 
+
 def _check_enough_groups(adjacency, formats=formats):
     for key in adjacency.keys():
-        if (len(adjacency[key])+1) > len(formats):
-            logging.warning(f"{key} overlaps more features than there are formatting groups.")
+        if (len(adjacency[key]) + 1) > len(formats):
+            logging.warning(
+                f"{key} overlaps more features than there are formatting groups."
+            )
+
 
 def _get_connections(position_features):
     """Identify which features occur at the same position.
@@ -151,10 +167,14 @@ def _get_connections(position_features):
     _check_enough_groups(adjacency)
     return adjacency
 
+
 def _check_all_features_grouped(position_features, feature_groups):
     grouped_features = _get_feature_names(feature_groups)
     ufeatures = _get_feature_names(position_features)
-    assert all(uf in grouped_features for uf in ufeatures), "Not all features given a group, likely because of complex overlapping features."
+    assert all(
+        uf in grouped_features for uf in ufeatures
+    ), "Not all features given a group, likely because of complex overlapping features."
+
 
 def make_groups(position_features):
     """Make groups where no overlapping features share a group
@@ -168,7 +188,7 @@ def make_groups(position_features):
         list of lists: each sublist contains all features in a single group.
         Groups can use a single type of formatting, eg highlighting or font colour.
     """
-    feature_groups = [[],[],[],[],[]]
+    feature_groups = [[], [], [], [], []]
     adjacency = _get_connections(position_features)
     for fname in _get_feature_names(position_features):
         # if f already has a group skip f
@@ -182,8 +202,12 @@ def make_groups(position_features):
     _check_all_features_grouped(position_features, feature_groups)
     return feature_groups
 
+
 def _check_enough_formats(group, group_formats):
-    assert len(group) <= len(group_formats), f"{group} contains more features than there are available formats"
+    assert len(group) <= len(
+        group_formats
+    ), f"{group} contains more features than there are available formats"
+
 
 def _make_feature_formats(feature_groups, formats):
     """Assign formatting to each feature
@@ -197,11 +221,12 @@ def _make_feature_formats(feature_groups, formats):
         dict: Keys are features, items are their format.
     """
     feature_formats = {}
-    for i,group in enumerate(feature_groups):
+    for i, group in enumerate(feature_groups):
         _check_enough_formats(group, formats[i])
-        for j,feature in enumerate(group):
+        for j, feature in enumerate(group):
             feature_formats[feature] = formats[i][j]
     return feature_formats
+
 
 def _write_position_features(position_features, seqrec, feature_formats, p):
     """Write a sequence formatted according to its features. Note that
@@ -221,6 +246,7 @@ def _write_position_features(position_features, seqrec, feature_formats, p):
         for pf in pfs:
             _apply_format(run, feature_formats[pf])
 
+
 def _write_heading(seqrec, doc):
     """Generate a small heading with sequence name and description
 
@@ -232,12 +258,14 @@ def _write_heading(seqrec, doc):
     p = doc.add_paragraph(seqrec.name)
     p.add_run(f"\n{seqrec.description}")
 
+
 def _write_legend(feature_formats, doc):
     """Write a legend of features and their formats"""
     p = doc.add_paragraph("Legend")
     for feature in feature_formats.keys():
         run = p.add_run(f"\n{feature}")
         _apply_format(run, feature_formats[feature])
+
 
 def write_crazyseq(seqrec, qualifier, doc, formats=formats):
     """Write a single sequence with annotated features to an existing
@@ -259,7 +287,8 @@ def write_crazyseq(seqrec, qualifier, doc, formats=formats):
     p = doc.add_paragraph()
     _write_position_features(position_features, seqrec, feature_formats, p)
     _write_legend(feature_formats, doc)
-    
+
+
 def write_crazydoc(seqs, qualifier, path, formats=formats):
     """Write one or more SeqRecords annotated with features to a new
     document.
@@ -270,7 +299,7 @@ def write_crazydoc(seqs, qualifier, path, formats=formats):
         qualifier (str): The key to use for feature names from `.qualifiers`
         path (str): The path to write the document to. Will overwrite existing documents!
         formats (list, optional): List of format groups to use on features.
-    
+
     Examples:
         A custom list of docx formats can be supplied to the `formats` argument.
         If `formats` is not declared a default pallete is used.
@@ -278,11 +307,22 @@ def write_crazydoc(seqs, qualifier, path, formats=formats):
         >>>from docx.shared import RGBColor
         >>>from docx.enum.text import WD_COLOR
         >>>custom_formats = [
-                [WD_COLOR.PINK, WD_COLOR.TEAL, WD_COLOR.YELLOW, WD_COLOR.GRAY_50, WD_COLOR.VIOLET, WD_COLOR.TURQUOISE],
-                [RGBColor(0xFF, 0x00, 0x00), RGBColor(0x00, 0xFF, 0x00), RGBColor(0x00, 0x00, 0xFF)],
-                ['bold'],
-                ['underline'],
-                ['italic']
+                [
+                    WD_COLOR.PINK,
+                    WD_COLOR.TEAL,
+                    WD_COLOR.YELLOW,
+                    WD_COLOR.GRAY_50,
+                    WD_COLOR.VIOLET,
+                    WD_COLOR.TURQUOISE,
+                ],
+                [
+                    RGBColor(0xFF, 0x00, 0x00),
+                    RGBColor(0x00, 0xFF, 0x00),
+                    RGBColor(0x00, 0x00, 0xFF),
+                ],
+                ["bold"],
+                ["underline"],
+                ["italic"],
             ]
         >>>write_crazydoc(seq, 'product', 'custom_colours.docx', formats=custom_formats)
 
@@ -294,13 +334,16 @@ def write_crazydoc(seqs, qualifier, path, formats=formats):
         write_crazyseq(record, qualifier, doc, formats)
     doc.save(path)
 
+
 def _test_colours(path, highlight_colours=highlight_colours, font_colours=font_colours):
     """Test all colour combinations
 
     Args:
         path (str): Path to save colour test docx
-        highlight_colours (list of WC_COLOR_INDEX, optional): List of used highlight colours in docx WD_COLOR_INDEX form. Defaults to highlight_colours.
-        font_colours (list of RGBColours, optional): List of used font colours in docx RGBColor form. Defaults to font_colours.
+        highlight_colours (list of WC_COLOR_INDEX, optional): List of used highlight
+            colours in docx WD_COLOR_INDEX form. Defaults to highlight_colours.
+        font_colours (list of RGBColours, optional): List of used font colours in docx
+            RGBColor form. Defaults to font_colours.
     """
     doc = Document()
     p = doc.add_paragraph()
