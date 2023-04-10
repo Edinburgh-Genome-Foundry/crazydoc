@@ -1,5 +1,5 @@
 """
-Tests for CrazydocWriters
+Tests for Crazydoc writer
 """
 import os
 import pytest
@@ -38,10 +38,9 @@ def test_writer_doesnt_change_feature_locations(tmpdir):
         assert locations == written_locations
 
 
-###############
+########################################################################################
 # Custom seq example
 # too many groups
-
 r = SeqRecord(Seq("abcdefghijklmnop"), id="eg")
 for i in range(6):
     f = SeqFeature(SimpleLocation(0, 2), qualifiers={"note": i})
@@ -54,7 +53,7 @@ def test_too_many_groups(tmpdir):
         write_crazydoc(r, "note", output_path)
 
 
-################
+########################################################################################
 # custom seq example
 # too many features in a group
 r = SeqRecord(Seq("abcdefghijklmnop"), id="eg")

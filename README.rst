@@ -84,13 +84,13 @@ This will return *protein* records, which will be saved with a GenPept extension
 (.gp) by ``records_to_genbank(biopython_records, is_protein=True)``, 
 unless specified otherwise with ``extension=``.
 
-You can also save annotated sequences as colourful word docs.
+You can also save annotated sequences as colourful Word docs.
 ``write_crazydoc()`` takes a SeqRecord, the qualifier key to use as a feature name,
 and a path to save the document to.
 
 .. code:: python
 
-    # Load an annotated sequence with biopython
+    # Load an annotated sequence with Biopython
     from Bio import SeqIO
     from crazydoc import write_crazydoc
     seq = SeqIO.read("examples/examples_outputs/Sequence 1.gbk", "genbank")

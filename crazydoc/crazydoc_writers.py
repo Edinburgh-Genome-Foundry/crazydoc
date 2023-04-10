@@ -269,12 +269,12 @@ def _write_legend(feature_formats, doc):
 
 def write_crazyseq(seqrec, qualifier, doc, formats=formats):
     """Write a single sequence with annotated features to an existing
-    document element. If you want to crazydocs to handle document
+    document element. If you want crazydocs to handle document
     creation use `write_crazydoc()` even for single sequences.
 
     Args:
-        seqrec (SeqRecord): The sequence to write, with features
-        qualifier (str): The key of the .qualifier to use as feature names
+        seqrec (SeqRecord): The sequence to write, with features.
+        qualifier (str): The key of the .qualifier to use as feature names.
         doc (docx document): The docx document element to write to.
         formats (list, optional): List of format groups to use on features.
     """
@@ -302,7 +302,7 @@ def write_crazydoc(seqs, qualifier, path, formats=formats):
 
     Examples:
         A custom list of docx formats can be supplied to the `formats` argument.
-        If `formats` is not declared a default pallete is used.
+        If `formats` is not declared a default palette is used.
 
         >>>from docx.shared import RGBColor
         >>>from docx.enum.text import WD_COLOR
