@@ -1,6 +1,6 @@
 [project]
 name = "crazydoc"
-version = "0.2.0"
+version = "0.2.1"
 license = "MIT"
 authors = [{ name = "Zulko" }]
 description = "Read genetic sequences from stylized docx files"
