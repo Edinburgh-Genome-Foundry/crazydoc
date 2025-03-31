@@ -14,7 +14,7 @@
    :target: https://coveralls.io/github/Edinburgh-Genome-Foundry/crazydoc?branch=master
 
 
-Crazydoc is a Python library to parse one of the most common DNA representation formats: the joyfully coloured and stylishly annotated MS-Word document.
+Crazydoc is a Python library to parse one of the most common DNA representation formats: the joyfully coloured and stylishly annotated MS Word document.
 
 .. raw:: html
 
@@ -22,7 +22,7 @@ Crazydoc is a Python library to parse one of the most common DNA representation 
     <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/screenshot.png" width="600">
     </p>
 
-Crazydoc returns Biopython records of the sequences contained in an MS-Word document, with record features corresponding to the various sequence highlightings (background color, boldness, italics, case change, etc.). The records can saved as GenBanks or easily plotted.
+Crazydoc returns Biopython records of the sequences contained in an MS Word document, with record features corresponding to the various sequence highlightings (background color, boldness, italics, case change, etc.). The records can saved as GenBanks or easily plotted.
 
 .. raw:: html
 
@@ -32,9 +32,9 @@ Crazydoc returns Biopython records of the sequences contained in an MS-Word docu
     
 **Motivation**
 
-While other standards such as FASTA or Genbank are better supported by modern sequence editors, none enjoys the same popularity among molecular biologist as MS-Word's ``.docx`` format, which is limited only by the sophistication and creativity of the user.
+While other standards such as FASTA or Genbank are better supported by modern sequence editors, none enjoys the same popularity among molecular biologist as MS Word's ``.docx`` format, which is limited only by the sophistication and creativity of the user.
 
-Relying on a loose syntax and unclear specifications, this format has however suffered from a lack of support in the developers community and is generally incompatible with mainstream software pipelines. This library allows to convert MS-Word DNA sequences to more computing friendly formats: Biopython records, FASTA, or annotated Genbanks.
+Relying on a loose syntax and unclear specifications, this format has however suffered from a lack of support in the developers community and is generally incompatible with mainstream software pipelines. This library allows to convert MS Word DNA sequences to more computing friendly formats: Biopython records, FASTA, or annotated Genbanks.
 
 Usage
 -----

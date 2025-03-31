@@ -1,14 +1,14 @@
 CrazyDoc
 ========
 
-Crazydoc is a Python library to parse one of the most common DNA representation formats: the joyfully coloured and stylishly annotated MS-Word document.
+Crazydoc is a Python library to parse one of the most common DNA representation formats: the joyfully coloured and stylishly annotated MS Word document.
 
 .. image:: https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/screenshot.png
    :alt: [logo]
    :align: center
    :width: 600px
 
-While other standards such as FASTA or Genbank are better supported by modern sequence editors, none enjoys the same popularity among molecular biologist as MS-Word's ``.docx`` format, which is limited only by the sophistication and creativity of the user.
+While other standards such as FASTA or Genbank are better supported by modern sequence editors, none enjoys the same popularity among molecular biologist as MS Word's ``.docx`` format, which is limited only by the sophistication and creativity of the user.
 
 Infos
 -----
@@ -19,11 +19,12 @@ Infos
 
   pip install crazydoc
 
-**Github Page**
+**Github Page:** `<https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_
 
-`<https://github.com/Edinburgh-Genome-Foundry/crazydoc>`_
+**License:** MIT
 
-**License:** MIT, Copyright Edinburgh Genome Foundry
+2018, 2025 Edinburgh Genome Foundry, University of Edinburgh
+
 
 More biology software
 ---------------------
