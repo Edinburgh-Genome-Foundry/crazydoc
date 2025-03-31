@@ -18,7 +18,6 @@ try:
         def compute_feature_label(self, feature):
             return feature.qualifiers.get("label", None)
 
-
 except ImportError:
 
     class CrazydocSketcher:
