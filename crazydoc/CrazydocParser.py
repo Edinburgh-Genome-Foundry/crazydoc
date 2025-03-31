@@ -13,21 +13,19 @@ from .biotools import string_is_sequence
 
 
 class CrazydocParser:
-    """Parser to translate MS-docx documents to Biopython records.
-
-    Examples:
-    ---------
-
-    >>> parser = CrazydocParser(['highlight_color', 'font_color'])
-    >>> biopython_records = parser.parse_doc_file('example.docx')
+    """Parser to translate MS Word docx documents to Biopython records.
 
     Parameters
     ----------
+    observers : list
+        A list of either `crazydoc.Observer` objects or observer names in
+        `highlight_color`, `font_color`, `bold`, `italic`, `upper_case`, `lower_case`,
+        `underline`.
 
-    observers
-      A list of either ``crazydoc.Observer`` objects or observer names in
-      ``highlight_color``, ``font_color``, ``bold``, ``italic``,
-      ``upper_case``, ``lower_case``, ``underline``.
+    Examples
+    --------
+    >>> parser = CrazydocParser(['highlight_color', 'font_color'])
+    >>> biopython_records = parser.parse_doc_file('example.docx')
     """
 
     observers_dict = {
@@ -73,7 +71,7 @@ class CrazydocParser:
         ]
 
     def _msword_runs_to_record(self, runs, is_protein=False):
-        """Transform a MS Word runs list to a biopython record."""
+        """Transform a MS Word runs list to a Biopython record."""
         records = [
             observer.msword_runs_to_record(runs, is_protein=is_protein)
             for observer in self.observers
@@ -99,16 +97,12 @@ class CrazydocParser:
 
         Parameters
         ----------
-
-        filepath
-          A path to a docx file.
-
-        doc
-          A python-docx Document object, which can be provided instead of the
-          file path.
-
-        is_protein
-          True if the sequences are protein sequences (default: False).
+        filepath : str, optional
+            A path to a docx file.
+        doc : Document, optional
+            A python-docx Document object, which can be provided instead of the file path.
+        is_protein : bool, optional
+            True if the sequences are protein sequences (default: False).
         """
         if doc is None:
             doc = Document(filepath)

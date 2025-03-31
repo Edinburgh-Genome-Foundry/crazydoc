@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API reference &mdash; crazydoc  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="CrazyDoc" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            crazydoc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">CrazyDoc</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.StyleObserver"><code class="docutils literal notranslate"><span class="pre">StyleObserver</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.CrazydocParser"><code class="docutils literal notranslate"><span class="pre">CrazydocParser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocParser.parse_doc_file"><code class="docutils literal notranslate"><span class="pre">CrazydocParser.parse_doc_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.CrazydocSketcher"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_box_color"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_box_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_box_linewidth"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_box_linewidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_color"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_fontdict"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_fontdict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_html"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_html()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_label"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_label()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_label_link_color"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_label_link_color()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_feature_linewidth"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_feature_linewidth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.compute_filtered_features"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.compute_filtered_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.quick_class_plot"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.quick_class_plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.quick_plot"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.quick_plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.translate_feature"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.translate_feature()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crazydoc.CrazydocSketcher.translate_record"><code class="docutils literal notranslate"><span class="pre">CrazydocSketcher.translate_record()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.write_crazydoc"><code class="docutils literal notranslate"><span class="pre">write_crazydoc()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.write_crazyseq"><code class="docutils literal notranslate"><span class="pre">write_crazyseq()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.make_groups"><code class="docutils literal notranslate"><span class="pre">make_groups()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#crazydoc.records_to_genbank"><code class="docutils literal notranslate"><span class="pre">records_to_genbank()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">crazydoc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ref.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-reference">
+<h1>API reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="crazydoc.StyleObserver">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">StyleObserver</span></span><a class="headerlink" href="#crazydoc.StyleObserver" title="Link to this definition"></a></dt>
+<dd><p>Generic class for observing style-based annotations in sequences.</p>
+<p>The provided subclasses each observe one particular type of DNA sequence
+annotation, such as the highlight color, bold text, underlines, etc.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="crazydoc.CrazydocParser">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">CrazydocParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observers</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocParser" title="Link to this definition"></a></dt>
+<dd><p>Parser to translate MS Word docx documents to Biopython records.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>observers</strong> (<em>list</em>) – A list of either <cite>crazydoc.Observer</cite> objects or observer names in
+<cite>highlight_color</cite>, <cite>font_color</cite>, <cite>bold</cite>, <cite>italic</cite>, <cite>upper_case</cite>, <cite>lower_case</cite>,
+<cite>underline</cite>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">parser</span> <span class="o">=</span> <span class="n">CrazydocParser</span><span class="p">([</span><span class="s1">&#39;highlight_color&#39;</span><span class="p">,</span> <span class="s1">&#39;font_color&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">biopython_records</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_doc_file</span><span class="p">(</span><span class="s1">&#39;example.docx&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocParser.parse_doc_file">
+<span class="sig-name descname"><span class="pre">parse_doc_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_protein</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocParser.parse_doc_file" title="Link to this definition"></a></dt>
+<dd><p>Return a list of records, 1 for each sequence contained in the docx.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – A path to a docx file.</p></li>
+<li><p><strong>doc</strong> (<em>Document</em><em>, </em><em>optional</em>) – A python-docx Document object, which can be provided instead of the file path.</p></li>
+<li><p><strong>is_protein</strong> (<em>bool</em><em>, </em><em>optional</em>) – True if the sequences are protein sequences (default: False).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">CrazydocSketcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher" title="Link to this definition"></a></dt>
+<dd><p>Custom sequence plotter for records from crazydoc.</p>
+<section id="examples">
+<h2>Examples:<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># plot and export the schema of records from crazydoc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">translator</span> <span class="o">=</span> <span class="n">CrazydocGraphicTranslator</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ax</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">translator</span><span class="o">.</span><span class="n">translate_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">id</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_box_color">
+<span class="sig-name descname"><span class="pre">compute_feature_box_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_box_color" title="Link to this definition"></a></dt>
+<dd><p>Compute a box_color for this feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_box_linewidth">
+<span class="sig-name descname"><span class="pre">compute_feature_box_linewidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_box_linewidth" title="Link to this definition"></a></dt>
+<dd><p>Compute a box_linewidth for this feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_color">
+<span class="sig-name descname"><span class="pre">compute_feature_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_color" title="Link to this definition"></a></dt>
+<dd><p>Compute a color for this feature.</p>
+<p>If the feature has a <code class="docutils literal notranslate"><span class="pre">color</span></code> qualifier it will be used. Otherwise,
+the classe’s <code class="docutils literal notranslate"><span class="pre">default_feature_color</span></code> is used.</p>
+<p>To change the behaviour, create a subclass of <code class="docutils literal notranslate"><span class="pre">BiopythonTranslator</span></code>
+and overwrite this method.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_fontdict">
+<span class="sig-name descname"><span class="pre">compute_feature_fontdict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_fontdict" title="Link to this definition"></a></dt>
+<dd><p>Compute a font dict for this feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_html">
+<span class="sig-name descname"><span class="pre">compute_feature_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_html" title="Link to this definition"></a></dt>
+<dd><p>Gets the ‘label’ of the feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_label">
+<span class="sig-name descname"><span class="pre">compute_feature_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_label" title="Link to this definition"></a></dt>
+<dd><p>Compute the label of the feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_label_link_color">
+<span class="sig-name descname"><span class="pre">compute_feature_label_link_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_label_link_color" title="Link to this definition"></a></dt>
+<dd><p>Compute the color of the line linking the label to its feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_feature_linewidth">
+<span class="sig-name descname"><span class="pre">compute_feature_linewidth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_feature_linewidth" title="Link to this definition"></a></dt>
+<dd><p>Compute the edge width of the feature’s arrow/rectangle.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.compute_filtered_features">
+<span class="sig-name descname"><span class="pre">compute_filtered_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.compute_filtered_features" title="Link to this definition"></a></dt>
+<dd><p>Return the list of features minus the ignored ones.</p>
+<p>By the method keeps any feature whose type is not in
+ignored_features_types and for which all filter(f) pass.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.quick_class_plot">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">quick_class_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figure_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.quick_class_plot" title="Link to this definition"></a></dt>
+<dd><p>Allows super quick and dirty plotting of Biopython records.</p>
+<p>This is really meant for use in a Jupyter/Ipython notebook with
+the “%matplotlib inline” setting.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">BiopythonTranslator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BiopythonTranslator</span><span class="o">.</span><span class="n">quick_plot</span><span class="p">(</span><span class="n">my_record</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.quick_plot">
+<span class="sig-name descname"><span class="pre">quick_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">figure_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.quick_plot" title="Link to this definition"></a></dt>
+<dd><p>Allows super quick and dirty plotting of Biopython records.</p>
+<p>This is really meant for use in a Jupyter/Ipython notebook with
+the “%matplotlib inline” setting.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">dna_features_viewer</span> <span class="kn">import</span> <span class="n">BiopythonTranslator</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">BiopythonTranslator</span><span class="o">.</span><span class="n">quick_plot</span><span class="p">(</span><span class="n">my_record</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.translate_feature">
+<span class="sig-name descname"><span class="pre">translate_feature</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.translate_feature" title="Link to this definition"></a></dt>
+<dd><p>Translate a Biopython feature into a Dna Features Viewer feature.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="crazydoc.CrazydocSketcher.translate_record">
+<span class="sig-name descname"><span class="pre">translate_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">record_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.CrazydocSketcher.translate_record" title="Link to this definition"></a></dt>
+<dd><p>Create a new GraphicRecord from a BioPython Record object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>record</strong> – A BioPython Record object or the path to a Genbank or a GFF file.</p></li>
+<li><p><strong>record_class</strong> – The graphic record class to use, e.g. GraphicRecord (default) or
+CircularGraphicRecord. Strings ‘circular’ and ‘linear’ can also be
+provided.</p></li>
+<li><p><strong>filetype</strong> – Used only when a Genbank or a GFF file is provided; one of “genbank”
+or “gff” to be used. Default None infers from file extension.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crazydoc.write_crazydoc">
+<span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">write_crazydoc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[[WD_COLOR_INDEX.GREEN,</span> <span class="pre">WD_COLOR_INDEX.GRAY_25,</span> <span class="pre">WD_COLOR_INDEX.TEAL,</span> <span class="pre">WD_COLOR_INDEX.VIOLET,</span> <span class="pre">WD_COLOR_INDEX.RED,</span> <span class="pre">WD_COLOR_INDEX.GRAY_50,</span> <span class="pre">WD_COLOR_INDEX.DARK_YELLOW,</span> <span class="pre">WD_COLOR_INDEX.DARK_RED,</span> <span class="pre">WD_COLOR_INDEX.DARK_BLUE],</span> <span class="pre">[(248,</span> <span class="pre">118,</span> <span class="pre">109),</span> <span class="pre">(183,</span> <span class="pre">159,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">186,</span> <span class="pre">56),</span> <span class="pre">(0,</span> <span class="pre">191,</span> <span class="pre">196),</span> <span class="pre">(97,</span> <span class="pre">156,</span> <span class="pre">255),</span> <span class="pre">(245,</span> <span class="pre">100,</span> <span class="pre">227)],</span> <span class="pre">['bold'],</span> <span class="pre">['underline'],</span> <span class="pre">['italic']]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.write_crazydoc" title="Link to this definition"></a></dt>
+<dd><p>Write one or more SeqRecords annotated with features to a new document.</p>
+<p>WILL OVERWRITE EXISTING DOCUMENTS WITHOUT WARNING!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seqs</strong> (<em>list</em>) – List of SeqRecords to write out.</p></li>
+<li><p><strong>qualifier</strong> (<em>str</em>) – The key to use for feature names from <cite>.qualifiers</cite>.</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – The path to write the document to. Will overwrite existing documents!</p></li>
+<li><p><strong>formats</strong> (<em>list</em><em>, </em><em>optional</em>) – List of format groups to use on features.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>A custom list of docx formats can be supplied to the <cite>formats</cite> argument.
+If <cite>formats</cite> is not declared a default palette is used.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">docx.shared</span> <span class="kn">import</span> <span class="n">RGBColor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">docx.enum.text</span> <span class="kn">import</span> <span class="n">WD_COLOR</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">custom_formats</span> <span class="o">=</span> <span class="p">[</span>
+<span class="go">        [</span>
+<span class="go">            WD_COLOR.PINK,</span>
+<span class="go">            WD_COLOR.TEAL,</span>
+<span class="go">            WD_COLOR.YELLOW,</span>
+<span class="go">            WD_COLOR.GRAY_50,</span>
+<span class="go">            WD_COLOR.VIOLET,</span>
+<span class="go">            WD_COLOR.TURQUOISE,</span>
+<span class="go">        ],</span>
+<span class="go">        [</span>
+<span class="go">            RGBColor(0xFF, 0x00, 0x00),</span>
+<span class="go">            RGBColor(0x00, 0xFF, 0x00),</span>
+<span class="go">            RGBColor(0x00, 0x00, 0xFF),</span>
+<span class="go">        ],</span>
+<span class="go">        [&quot;bold&quot;],</span>
+<span class="go">        [&quot;underline&quot;],</span>
+<span class="go">        [&quot;italic&quot;],</span>
+<span class="go">    ]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_crazydoc</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="s1">&#39;product&#39;</span><span class="p">,</span> <span class="s1">&#39;custom_colours.docx&#39;</span><span class="p">,</span> <span class="n">formats</span><span class="o">=</span><span class="n">custom_formats</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crazydoc.write_crazyseq">
+<span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">write_crazyseq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seqrec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualifier</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[[WD_COLOR_INDEX.GREEN,</span> <span class="pre">WD_COLOR_INDEX.GRAY_25,</span> <span class="pre">WD_COLOR_INDEX.TEAL,</span> <span class="pre">WD_COLOR_INDEX.VIOLET,</span> <span class="pre">WD_COLOR_INDEX.RED,</span> <span class="pre">WD_COLOR_INDEX.GRAY_50,</span> <span class="pre">WD_COLOR_INDEX.DARK_YELLOW,</span> <span class="pre">WD_COLOR_INDEX.DARK_RED,</span> <span class="pre">WD_COLOR_INDEX.DARK_BLUE],</span> <span class="pre">[(248,</span> <span class="pre">118,</span> <span class="pre">109),</span> <span class="pre">(183,</span> <span class="pre">159,</span> <span class="pre">0),</span> <span class="pre">(0,</span> <span class="pre">186,</span> <span class="pre">56),</span> <span class="pre">(0,</span> <span class="pre">191,</span> <span class="pre">196),</span> <span class="pre">(97,</span> <span class="pre">156,</span> <span class="pre">255),</span> <span class="pre">(245,</span> <span class="pre">100,</span> <span class="pre">227)],</span> <span class="pre">['bold'],</span> <span class="pre">['underline'],</span> <span class="pre">['italic']]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.write_crazyseq" title="Link to this definition"></a></dt>
+<dd><p>Write a single sequence with annotated features to an existing
+document element. If you want crazydoc to handle document
+creation, use <cite>write_crazydoc()</cite> even for single sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seqrec</strong> (<em>SeqRecord</em>) – The sequence to write, with features.</p></li>
+<li><p><strong>qualifier</strong> (<em>str</em>) – The key of the .qualifier to use as feature names.</p></li>
+<li><p><strong>doc</strong> (<em>docx document</em>) – The docx document element to write to.</p></li>
+<li><p><strong>formats</strong> (<em>list</em><em>, </em><em>optional</em>) – List of format groups to use on features.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crazydoc.make_groups">
+<span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">make_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position_features</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.make_groups" title="Link to this definition"></a></dt>
+<dd><p>Make groups where no overlapping features share a group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>position_features</strong> (<em>list</em><em> of </em><em>lists</em>) – Each sublist represents a single position in the sequence and lists all the
+features that position is part of.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Each sublist contains all features in a single group. Groups can use a single
+type of formatting, e.g., highlighting or font color.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of lists</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="crazydoc.records_to_genbank">
+<span class="sig-prename descclassname"><span class="pre">crazydoc.</span></span><span class="sig-name descname"><span class="pre">records_to_genbank</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">records</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_protein</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#crazydoc.records_to_genbank" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="CrazyDoc" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2018, 2025 Edinburgh Genome Foundry, University of Edinburgh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

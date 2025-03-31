@@ -84,28 +84,34 @@ def _get_formatter(formatting):
 
 
 def _apply_format(run, formatting):
-    """Apply formatting to a specified run
+    """Apply formatting to a specified run.
 
-    Args:
-        run (docx run): The run to be formatted
-        formatting (str, RGBColor, BaseEnum): The formatting to be applied
-            `_get_formatter()` determines how to apply the formatting based
-            on its type.
+    Parameters
+    ----------
+    run : docx run
+        The run to be formatted.
+    formatting : str, RGBColor, BaseEnum
+        The formatting to be applied. `_get_formatter()` determines how to apply
+        the formatting based on its type.
     """
     formatter = _get_formatter(formatting)
     formatter(run, formatting)
 
 
 def _features_per_position(seqrec, qualifier):
-    """Identify all features at each position
+    """Identify all features at each position.
 
-    Args:
-        seqrec (seq record): Sequence record annotated with features
-        qualifier (str): The qualifier to take as a feature name, must be unique.
+    Parameters
+    ----------
+    seqrec : SeqRecord
+        Sequence record annotated with features.
+    qualifier : str
+        The qualifier to take as a feature name, must be unique.
 
-    Returns:
-        list of lists: Each sub list reports all features overlapping
-        the ith position.
+    Returns
+    -------
+    list of lists
+        Each sub list reports all features overlapping the ith position.
     """
     position_features = []
     for i, x in enumerate(seqrec.seq):
@@ -116,14 +122,18 @@ def _features_per_position(seqrec, qualifier):
 
 def _get_feature_names(position_features):
     """Get names of each feature in order they appear.
-    Names defined by `qualifier` passed to `features_per_position()`
 
-    Args:
-        position_features (list of lists): Each sublist represents all the
-        features at that position in the sequence
+    Names defined by `qualifier` passed to `features_per_position()`.
 
-    Returns:
-        list: Each element is a feature name. They are unique and in order
+    Parameters
+    ----------
+    position_features : list of lists
+        Each sublist represents all the features at that position in the sequence.
+
+    Returns
+    -------
+    list
+        Each element is a feature name. They are unique and in order.
     """
     fnames = [f for pos in position_features for f in pos]
     unique_fnames = []
@@ -143,15 +153,21 @@ def _check_enough_groups(adjacency, formats=formats):
 
 def _get_connections(position_features):
     """Identify which features occur at the same position.
+
     Overlapping features must be in different groups.
 
-    Args:
-        position_features (_type_): _description_
-        formats (list, optional): List of format groups to use on features.
+    Parameters
+    ----------
+    position_features : Any
+        Description of `position_features`, placeholder provided needs details.
+    formats : list, optional
+        List of format groups to use on features.
 
-    Returns:
-        dict: each key is a feature and the items are the features
-        that overlap with the key feature.
+    Returns
+    -------
+    dict
+        Each key is a feature and the items are the features that overlap
+        with the key feature.
     """
     adjacency = {}
     for fname in _get_feature_names(position_features):
@@ -179,16 +195,19 @@ def _check_all_features_grouped(position_features, feature_groups):
 
 
 def make_groups(position_features):
-    """Make groups where no overlapping features share a group
+    """Make groups where no overlapping features share a group.
 
-    Args:
-        position_features (list of lists): Each sublist represents a
-        single position in the sequence and lists all the features
-        that position is part of.
+    Parameters
+    ----------
+    position_features : list of lists
+        Each sublist represents a single position in the sequence and lists all the
+        features that position is part of.
 
-    Returns:
-        list of lists: each sublist contains all features in a single group.
-        Groups can use a single type of formatting, eg highlighting or font colour.
+    Returns
+    -------
+    list of lists
+        Each sublist contains all features in a single group. Groups can use a single
+        type of formatting, e.g., highlighting or font color.
     """
     feature_groups = [[], [], [], [], []]
     adjacency = _get_connections(position_features)
@@ -212,15 +231,20 @@ def _check_enough_formats(group, group_formats):
 
 
 def _make_feature_formats(feature_groups, formats):
-    """Assign formatting to each feature
+    """Assign formatting to each feature.
 
-    Args:
-        feature_groups (list): list of groups
-        formats (list of lists): each sublist contains all available values of a
-        type of formatting, eg font colours.
+    Parameters
+    ----------
+    feature_groups : list
+        List of groups.
+    formats : list of lists
+        Each sublist contains all available values of a type of formatting,
+        e.g., font colors.
 
-    Returns:
-        dict: Keys are features, items are their format.
+    Returns
+    -------
+    dict
+        Keys are features, items are their format.
     """
     feature_formats = {}
     for i, group in enumerate(feature_groups):
@@ -231,16 +255,21 @@ def _make_feature_formats(feature_groups, formats):
 
 
 def _write_position_features(position_features, seqrec, feature_formats, p):
-    """Write a sequence formatted according to its features. Note that
-    all sequences are written as upper case.
+    """Write a sequence formatted according to its features.
 
-    Args:
-        position_features (list of lists): Each sublist represents a
-        single position in the sequence and lists all the features
-        that position is part of.
-        seqrec (SeqRecord): The SeqRecord that `position_features` describe.
-        feature_formats dict: Keys are features, items are their format.
-        p (docx paragraph): The docx paragraph element to write to
+    Note that all sequences are written in uppercase.
+
+    Parameters
+    ----------
+    position_features : list of lists
+        Each sublist represents a single position in the sequence and lists all
+        the features that position is part of.
+    seqrec : SeqRecord
+        The SeqRecord that `position_features` describe.
+    feature_formats : dict
+        Keys are features, items are their format.
+    p : docx paragraph
+        The docx paragraph element to write to.
     """
     for i, pfs in enumerate(position_features):
         run = p.add_run(seqrec[i].upper())
@@ -250,11 +279,14 @@ def _write_position_features(position_features, seqrec, feature_formats, p):
 
 
 def _write_heading(seqrec, doc):
-    """Generate a small heading with sequence name and description
+    """Generate a small heading with sequence name and description.
 
-    Args:
-        seqrec (SeqRecord): The sequence record
-        doc (docx document): The document element to write to
+    Parameters
+    ----------
+    seqrec : SeqRecord
+        The sequence record.
+    doc : docx document
+        The document element to write to.
     """
     doc.add_heading(seqrec.id, level=1)
     p = doc.add_paragraph(seqrec.name)
@@ -262,7 +294,7 @@ def _write_heading(seqrec, doc):
 
 
 def _write_legend(feature_formats, doc):
-    """Write a legend of features and their formats"""
+    """Write a legend of features and their formats."""
     p = doc.add_paragraph("Legend")
     for feature in feature_formats.keys():
         run = p.add_run(f"\n{feature}")
@@ -271,14 +303,19 @@ def _write_legend(feature_formats, doc):
 
 def write_crazyseq(seqrec, qualifier, doc, formats=formats):
     """Write a single sequence with annotated features to an existing
-    document element. If you want crazydocs to handle document
-    creation use `write_crazydoc()` even for single sequences.
+    document element. If you want crazydoc to handle document
+    creation, use `write_crazydoc()` even for single sequences.
 
-    Args:
-        seqrec (SeqRecord): The sequence to write, with features.
-        qualifier (str): The key of the .qualifier to use as feature names.
-        doc (docx document): The docx document element to write to.
-        formats (list, optional): List of format groups to use on features.
+    Parameters
+    ----------
+    seqrec : SeqRecord
+        The sequence to write, with features.
+    qualifier : str
+        The key of the .qualifier to use as feature names.
+    doc : docx document
+        The docx document element to write to.
+    formats : list, optional
+        List of format groups to use on features.
     """
     _write_heading(seqrec, doc)
     # Determine feature groups and formats
@@ -292,42 +329,47 @@ def write_crazyseq(seqrec, qualifier, doc, formats=formats):
 
 
 def write_crazydoc(seqs, qualifier, path, formats=formats):
-    """Write one or more SeqRecords annotated with features to a new
-    document.
-    WILL OVERWRITE EXISTING DOUCMENTS WITHOUT WARNING.
+    """Write one or more SeqRecords annotated with features to a new document.
 
-    Args:
-        seqs (list): List of SeqRecords to write out
-        qualifier (str): The key to use for feature names from `.qualifiers`
-        path (str): The path to write the document to. Will overwrite existing documents!
-        formats (list, optional): List of format groups to use on features.
+    WILL OVERWRITE EXISTING DOCUMENTS WITHOUT WARNING!
 
-    Examples:
-        A custom list of docx formats can be supplied to the `formats` argument.
-        If `formats` is not declared a default palette is used.
+    Parameters
+    ----------
+    seqs : list
+        List of SeqRecords to write out.
+    qualifier : str
+        The key to use for feature names from `.qualifiers`.
+    path : str
+        The path to write the document to. Will overwrite existing documents!
+    formats : list, optional
+        List of format groups to use on features.
 
-        >>>from docx.shared import RGBColor
-        >>>from docx.enum.text import WD_COLOR
-        >>>custom_formats = [
-                [
-                    WD_COLOR.PINK,
-                    WD_COLOR.TEAL,
-                    WD_COLOR.YELLOW,
-                    WD_COLOR.GRAY_50,
-                    WD_COLOR.VIOLET,
-                    WD_COLOR.TURQUOISE,
-                ],
-                [
-                    RGBColor(0xFF, 0x00, 0x00),
-                    RGBColor(0x00, 0xFF, 0x00),
-                    RGBColor(0x00, 0x00, 0xFF),
-                ],
-                ["bold"],
-                ["underline"],
-                ["italic"],
-            ]
-        >>>write_crazydoc(seq, 'product', 'custom_colours.docx', formats=custom_formats)
+    Examples
+    --------
+    A custom list of docx formats can be supplied to the `formats` argument.
+    If `formats` is not declared a default palette is used.
 
+    >>> from docx.shared import RGBColor
+    >>> from docx.enum.text import WD_COLOR
+    >>> custom_formats = [
+            [
+                WD_COLOR.PINK,
+                WD_COLOR.TEAL,
+                WD_COLOR.YELLOW,
+                WD_COLOR.GRAY_50,
+                WD_COLOR.VIOLET,
+                WD_COLOR.TURQUOISE,
+            ],
+            [
+                RGBColor(0xFF, 0x00, 0x00),
+                RGBColor(0x00, 0xFF, 0x00),
+                RGBColor(0x00, 0x00, 0xFF),
+            ],
+            ["bold"],
+            ["underline"],
+            ["italic"],
+        ]
+    >>> write_crazydoc(seq, 'product', 'custom_colours.docx', formats=custom_formats)
     """
     doc = Document()
     if isinstance(seqs, SeqRecord):
@@ -338,14 +380,16 @@ def write_crazydoc(seqs, qualifier, path, formats=formats):
 
 
 def _test_colours(path, highlight_colours=highlight_colours, font_colours=font_colours):
-    """Test all colour combinations
+    """Test all colour combinations.
 
-    Args:
-        path (str): Path to save colour test docx
-        highlight_colours (list of WC_COLOR_INDEX, optional): List of used highlight
-            colours in docx WD_COLOR_INDEX form. Defaults to highlight_colours.
-        font_colours (list of RGBColours, optional): List of used font colours in docx
-            RGBColor form. Defaults to font_colours.
+    Parameters
+    ----------
+    path : str
+        Path to save colour test docx.
+    highlight_colours : list of WD_COLOR_INDEX, optional
+        List of used highlight colours in docx WD_COLOR_INDEX form. Defaults to highlight_colours.
+    font_colours : list of RGBColor, optional
+        List of used font colours in docx RGBColor form. Defaults to font_colours.
     """
     doc = Document()
     p = doc.add_paragraph()
