@@ -1,14 +1,12 @@
-import ez_setup
-
-ez_setup.use_setuptools()
-
 from setuptools import setup, find_packages
 
-exec(open("crazydoc/version.py").read())  # loads __version__
+version = {}
+with open("crazydoc/version.py") as fp:
+    exec(fp.read(), version)
 
 setup(
     name="crazydoc",
-    version=__version__,
+    version=version["__version__"],
     author="Zulko",
     url="https://github.com/Edinburgh-Genome-Foundry/crazydoc",
     description="Read genetic sequences from stylized docx files",

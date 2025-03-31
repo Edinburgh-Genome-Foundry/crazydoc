@@ -1,0 +1,22 @@
+[project]
+name = "crazydoc"
+version = "0.1.6"
+license = "MIT"
+authors = [{ name = "Zulko" }]
+description = "Read genetic sequences from stylized docx files"
+readme = "pypi-readme.rst"
+keywords = ["dna-sequence", "bioinformatics", "systems-biology", "docx"]
+dependencies = ["biopython", "python-docx"]
+
+[project.urls]
+Homepage = "https://github.com/Edinburgh-Genome-Foundry/crazydoc"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["docs"]
