@@ -1,7 +1,7 @@
 .. raw:: html
 
     <p align="center">
-    <img alt="crazydoc Logo" title="crazydoc Logo" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/title.png" width="550">
+    <img alt="crazydoc Logo" title="crazydoc Logo" src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/images/title.png" width="550">
     <br /><br />
     </p>
 
@@ -19,7 +19,7 @@ Crazydoc is a Python library to parse one of the most common DNA representation 
 .. raw:: html
 
     <p align="center">
-    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/screenshot.png" width="600">
+    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/images/screenshot.png" width="600">
     </p>
 
 Crazydoc returns Biopython records of the sequences contained in an MS Word document, with record features corresponding to the various sequence highlightings (background color, boldness, italics, case change, etc.). The records can saved as GenBanks or easily plotted.
@@ -27,7 +27,7 @@ Crazydoc returns Biopython records of the sequences contained in an MS Word docu
 .. raw:: html
 
     <p align="center">
-    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/records_plots.png" width="800">
+    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/images/records_plots.png" width="800">
     </p>
     
 **Motivation**
@@ -62,7 +62,7 @@ You can then plot the obtained records:
 .. raw:: html
 
     <p align="center">
-    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/records_plots.png" width="800">
+    <img src="https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/images/records_plots.png" width="800">
     </p>
 
 To write the sequences down as Genbank records, with annotations:

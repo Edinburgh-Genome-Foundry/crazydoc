@@ -3,7 +3,7 @@ CrazyDoc
 
 Crazydoc is a Python library to parse one of the most common DNA representation formats: the joyfully coloured and stylishly annotated MS Word document.
 
-.. image:: https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/docs/screenshot.png
+.. image:: https://raw.githubusercontent.com/Edinburgh-Genome-Foundry/crazydoc/master/images/screenshot.png
    :alt: [logo]
    :align: center
    :width: 600px
