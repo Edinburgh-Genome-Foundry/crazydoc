@@ -137,7 +137,7 @@ class HighlightColor(ColorObserver):
         if color is None:
             return False
         else:
-            return conf["color_theme"][color._member_name]
+            return conf["color_theme"][color.name]
 
 
 class UpperCase(CharactersObserver):

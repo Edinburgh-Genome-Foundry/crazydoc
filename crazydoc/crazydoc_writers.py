@@ -8,8 +8,8 @@ from Bio.SeqRecord import SeqRecord
 
 from docx import Document
 from docx.shared import Pt, RGBColor
-from docx.enum.base import EnumValue
-from docx.enum.text import WD_COLOR
+from docx.enum.base import BaseEnum
+from docx.enum.text import WD_COLOR, WD_COLOR_INDEX
 
 import logging
 
@@ -67,7 +67,9 @@ def _highlight_font(run, colour):
 def _get_formatter(formatting):
     if isinstance(formatting, RGBColor):
         formatter = _colour_font
-    elif isinstance(formatting, EnumValue):
+    elif isinstance(formatting, BaseEnum):
+        formatter = _highlight_font
+    elif isinstance(formatting, WD_COLOR_INDEX):
         formatter = _highlight_font
     elif isinstance(formatting, str):
         formatters = {
@@ -86,7 +88,7 @@ def _apply_format(run, formatting):
 
     Args:
         run (docx run): The run to be formatted
-        formatting (str, RGBColor, EnumValue): The formatting to be applied
+        formatting (str, RGBColor, BaseEnum): The formatting to be applied
             `_get_formatter()` determines how to apply the formatting based
             on its type.
     """
