@@ -6,7 +6,7 @@ authors = [{ name = "Zulko" }]
 description = "Read genetic sequences from stylized docx files"
 readme = "pypi-readme.rst"
 keywords = ["dna-sequence", "bioinformatics", "systems-biology", "docx"]
-dependencies = ["biopython", "python-docx"]
+dependencies = ["dna_features_viewer", "biopython", "python-docx"]
 
 [project.urls]
 Homepage = "https://github.com/Edinburgh-Genome-Foundry/crazydoc"
